@@ -1,0 +1,75 @@
+{
+  "kind": "books#volume",
+  "id": "B1hSG45JCX4C",
+  "etag": "5xRgYPMe7ss",
+  "selfLink": "https://www.googleapis.com/books/v1/volumes/B1hSG45JCX4C",
+  "volumeInfo": {
+      "title": "Dune",
+      "authors": [
+          "Frank Herbert"
+      ],
+      "publisher": "Penguin",
+      "publishedDate": "2005",
+      "description": "Follows the adventures of Paul Atreides, the son of a betrayed duke given up for dead on a treacherous desert planet and adopted by its fierce, nomadic people, who help him unravel his most unexpected destiny.",
+      "industryIdentifiers": [
+          {
+              "type": "ISBN_10",
+              "identifier": "0441013597"
+          },
+          {
+              "type": "ISBN_13",
+              "identifier": "9780441013593"
+          }
+      ],
+      "readingModes": {
+          "text": false,
+          "image": false
+      },
+      "pageCount": 528,
+      "printType": "BOOK",
+      "categories": [
+          "Fiction"
+      ],
+      "averageRating": 4.5,
+      "ratingsCount": 25,
+      "maturityRating": "NOT_MATURE",
+      "allowAnonLogging": false,
+      "contentVersion": "3.2.4.0.preview.0",
+      "panelizationSummary": {
+          "containsEpubBubbles": false,
+          "containsImageBubbles": false
+      },
+      "imageLinks": {
+          "smallThumbnail": "http://books.google.com/books/content?id=B1hSG45JCX4C&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+          "thumbnail": "http://books.google.com/books/content?id=B1hSG45JCX4C&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+      },
+      "language": "en",
+      "previewLink": "http://books.google.com/books?id=B1hSG45JCX4C&printsec=frontcover&dq=dune&hl=&cd=1&source=gbs_api",
+      "infoLink": "http://books.google.com/books?id=B1hSG45JCX4C&dq=dune&hl=&source=gbs_api",
+      "canonicalVolumeLink": "https://books.google.com/books/about/Dune.html?hl=&id=B1hSG45JCX4C"
+  },
+  "saleInfo": {
+      "country": "US",
+      "saleability": "NOT_FOR_SALE",
+      "isEbook": false
+  },
+  "accessInfo": {
+      "country": "US",
+      "viewability": "PARTIAL",
+      "embeddable": true,
+      "publicDomain": false,
+      "textToSpeechPermission": "ALLOWED",
+      "epub": {
+          "isAvailable": false
+      },
+      "pdf": {
+          "isAvailable": false
+      },
+      "webReaderLink": "http://play.google.com/books/reader?id=B1hSG45JCX4C&hl=&printsec=frontcover&source=gbs_api",
+      "accessViewStatus": "SAMPLE",
+      "quoteSharingAllowed": false
+  },
+  "searchInfo": {
+      "textSnippet": "Follows the adventures of Paul Atreides, the son of a betrayed duke given up for dead on a treacherous desert planet and adopted by its fierce, nomadic people, who help him unravel his most unexpected destiny."
+  }
+}
