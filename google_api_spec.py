@@ -3,8 +3,13 @@ import unittest
 
 # application imports
 import api
+import classes
+# from classes.Book import Book
 
+# misc imports
+import sqlite3
 import json
+
 
 
 
@@ -51,6 +56,20 @@ class TestCasesAPICalls(unittest.TestCase):
         'publishing_company' : "Penguin"
     }
         self.assertEqual(input, output)
+
+    def test_book_class_title(self):
+        """ Will test a book class being created """
+        book_1 = classes.Book('1','Douglas Adams','Hitchhikers Guide to the Galaxy','Megadodo')
+        input = book_1.author
+        output = 'Douglas Adams'
+        self.assertEqual(input, output)
+    
+    def test_book_class_wrong_output(self):
+        """ Will test a book class being created """
+        book_1 = classes.Book('1','Douglas Adams','Hitchhikers Guide to the Galaxy','Megadodo')
+        input = book_1.title
+        output = 'Megadodo'
+        self.assertNotEqual(input, output)
 
 if __name__ == "__main__":
     unittest.main()

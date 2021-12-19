@@ -1,6 +1,20 @@
 # thomas_google_api
 This repository is for 8th Lights technical assessment. 
 
+User notes:
+1. In order to run this application you will need to create the database. Please follow the instructions below. Have the user run a file that contains the following instructions:
+# conn = sqlite3.connect('./data/reading_list.db')
+# curs = conn.cursor()
+# curs.execute("""CREATE TABLE books (
+#     id integer primary key,
+#     author text,
+#     title text,
+#     publisher text
+#     ) """)
+# conn.commit()
+# conn.close()
+
+
 Project minimum viable product.
 1. Type in a query and display a list of 5 books matching that query.
 2. Each item in the list should include the book's author, title, and publishing company.
@@ -37,4 +51,3 @@ Functionality
 
 Testing:
 1. Terminal handles invalid inputs
-2. 
