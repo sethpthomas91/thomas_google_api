@@ -14,10 +14,13 @@ class ReadingList:
 STARTING SEARCH FOR NEW BOOKS:
  """)
         user_input = input("What would you like to search for?\n")
+        
+        # API logic chain
         new_url = google_books_api.url_constructor(user_input)
         json_obj = google_books_api.api_request(new_url)
         raw_book_list = google_books_api.api_json_return(json_obj)
         filtered_book_list = list(map(google_books_api.book_filter, raw_book_list))
+
         book_obj_list = []
         for index, book in enumerate(filtered_book_list):
             index += 1
@@ -26,7 +29,8 @@ STARTING SEARCH FOR NEW BOOKS:
             publishing_company = book['publishing_company']
             book_obj_list.append(Book(index, author, title, publishing_company))
         # initial display of choices for the user
-        print(book_obj_list)
+        for book in book_obj_list:
+            print(book)
         while True:
             user_selection = int(input("""
 
@@ -45,7 +49,13 @@ You have selected to add:
 {user_book_selection}
  """)
                 self.add_book(user_book_selection)
-                print("Book added to reading list")
+                print(""" 
+Book added to reading list!
+""")
+                print(""" 
+ENDING SEARCH FOR NEW BOOKS.
+---------------------------              
+""")
                 break
             # displays to user again if not a good input
             else:
@@ -56,7 +66,7 @@ You have selected to add:
         print(""" 
 ---------------------------
 CURRENT READING LIST BELOW:
- """)   
+""")   
         for book in self.books:
             print(book)
         
@@ -65,7 +75,7 @@ END READING LIST
 ---------------------------
  """)
 
-
+    # adds a book to the sqlite database
     def add_book(self, book):
         conn = sqlite3.connect('./data/reading_list.db')
         curs = conn.cursor()
@@ -73,3 +83,5 @@ END READING LIST
         conn.commit()
         conn.close()
         self.books = Book.create_reading_list()
+
+    

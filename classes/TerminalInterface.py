@@ -1,4 +1,3 @@
-import sqlite3
 from .ReadingList import ReadingList
 
 class TerminalInterface:
@@ -15,7 +14,9 @@ class TerminalInterface:
             elif mode == '2':
                 self.reading_list.display_reading_list()
             elif mode == '3':
-                print("Exits application")
+                print(""" 
+Have a nice day!
+""")
                 break
 
     def initial_menu(self):

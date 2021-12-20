@@ -36,7 +36,7 @@ class TestCasesAPICalls(unittest.TestCase):
     def test_for_url_constructor(self):
         """ This will test that the user input is filtered before entering the API call """
         input = api.url_constructor("Dune Frank Herbert")
-        output = 'https://www.googleapis.com/books/v1/volumes?q=Dune%20Frank%20Herbert'
+        output = 'https://www.googleapis.com/books/v1/volumes?q=Dune%20Frank%20Herbert&printType=books&startIndex=0&maxResults=5'
         self.assertEqual(input, output)
     
     def test_for_wrong_url_constructor(self):
