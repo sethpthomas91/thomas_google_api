@@ -15,13 +15,13 @@ def api_request(url=BASE_URL):
 # should return a dictionary with only 5 objects if the API call went through
 def api_json_return(response):
     search_dict = response.json()
-    filtered_book_list = {
-        'book_one' : search_dict['items'][0],
-        'book_two' : search_dict['items'][1],
-        'book_three' : search_dict['items'][2],
-        'book_four' : search_dict['items'][3],
-        'book_five' : search_dict['items'][4]
-    }
+    filtered_book_list = [
+        search_dict['items'][0],
+        search_dict['items'][1],
+        search_dict['items'][2],
+        search_dict['items'][3],
+        search_dict['items'][4]
+    ]
     return filtered_book_list
 
 # takes in a book and filters out needed info

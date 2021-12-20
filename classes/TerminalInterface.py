@@ -11,7 +11,7 @@ class TerminalInterface:
         while True:
             mode = input(self.initial_menu())
             if mode == '1':
-                print("Will search for books")
+                self.reading_list.search_for_books()
             elif mode == '2':
                 self.reading_list.display_reading_list()
             elif mode == '3':
