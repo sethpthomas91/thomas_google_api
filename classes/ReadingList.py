@@ -32,19 +32,22 @@ STARTING SEARCH FOR NEW BOOKS:
         for book in book_obj_list:
             print(book)
         while True:
-            user_selection = int(input("""
+            user_selection = input("""
 
 Which of these books would you like to add to your reading list?
 
 If you don't see anything you like,
 select 6 to go back to the main menu.
-"""))
+""")
+            # if user input not verified it can throw a base 10 error when converting string to int
+            if len(user_selection) == 1:
 
-            if user_selection == 6:
-                break
-            if int(user_selection) > 0 and user_selection < 6:
-                user_book_selection = book_obj_list[user_selection-1]
-                print(f""" 
+                if int(user_selection) == 6:
+                    break
+
+                elif int(user_selection) > 0 and int(user_selection) < 6:
+                    user_book_selection = book_obj_list[user_selection-1]
+                    print(f""" 
 You have selected to add:
 {user_book_selection}
  """)
