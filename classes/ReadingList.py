@@ -45,6 +45,8 @@ You have selected to add:
 {user_book_selection}
  """)
                 self.add_book(user_book_selection)
+                print("Book added to reading list")
+                break
             # displays to user again if not a good input
             else:
                 print(book_obj_list)
@@ -64,3 +66,10 @@ END READING LIST
  """)
 
 
+    def add_book(self, book):
+        conn = sqlite3.connect('./data/reading_list.db')
+        curs = conn.cursor()
+        curs.execute("INSERT INTO books VALUES (NULL,?,?,?)",(book.author, book.title, book.publishing_company))
+        conn.commit()
+        conn.close()
+        self.books = Book.create_reading_list()
