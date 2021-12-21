@@ -5,8 +5,9 @@ User instructions:
 1. If you will not be using this longterm please utilize a virtual environment to contain the project. 
   a. Run "python -m venv .venv"
   b. Run "source .venv/bin/activate"
-2. Be sure to install the requirements.txt file.
+2. Be sure to install the requirements.txt and run the installation file.
   a. Run "pip install -r requirements.txt"
+  b. Run "python installation.py"
 3. Change your directory to the same level as the README and start the application.
   a. Run "python runner.py"
 4. You will be prompted with a set of instructions to create your very own reading list!

@@ -46,7 +46,7 @@ select 6 to go back to the main menu.
                     break
 
                 elif int(user_selection) > 0 and int(user_selection) < 6:
-                    user_book_selection = book_obj_list[user_selection-1]
+                    user_book_selection = book_obj_list[int(user_selection)-1]
                     print(f""" 
 You have selected to add:
 {user_book_selection}
