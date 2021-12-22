@@ -1,4 +1,4 @@
-# This class will be the framework for the book. We can make direct updates to books here in the future.
+# This class will be the framework for the book. It will be the main object passed into the database. We can make direct updates to books here in the future.
 
 import sqlite3
 

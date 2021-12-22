@@ -1,35 +1,34 @@
 # This class will handle recieving inputs from the user. It will also clean the data to protect against invalid input.
 
 from .ReadingList import ReadingList
+from .TerminalMessage import TerminalMessage
+from .GoogleList import GoogleList
 
 class TerminalInterface:
 
     def __init__(self):
         self.reading_list = ReadingList()
+        self.google_search = GoogleList()
 
     # main control for the user menu
     def run(self):
+
+        TerminalMessage.welcome_msg()
+
         while True:
-            mode = input(self.initial_menu())
+            mode = input(TerminalMessage.initial_menu())
             if mode == '1':
-                self.reading_list.search_for_books()
+                self.google_search.search_for_books()
+                self.google_search.display_search_list()
+                self.google_search.get_selected_book()
+                self.reading_list.add_book(self.google_search.selected_book)
             elif mode == '2':
                 self.reading_list.display_reading_list()
             elif mode == '3':
-                print(""" 
-Have a nice day!
-""")
+                TerminalMessage.exit_msg()
                 break
 
-    def initial_menu(self):
-        return """
-Welcome user!
-This is an application where you can search for books through your terminal.
-Please select a number that corresponds to what you want to do:
-1. Search for books
-2. View your current reading list
-3. Exit the application
-"""
+
             
 
             
