@@ -1,3 +1,5 @@
+# This class will be the framework for the book. We can make direct updates to books here in the future.
+
 import sqlite3
 
 class Book:

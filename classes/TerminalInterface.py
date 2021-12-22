@@ -1,3 +1,5 @@
+# This class will handle recieving inputs from the user. It will also clean the data to protect against invalid input.
+
 from .ReadingList import ReadingList
 
 class TerminalInterface:

@@ -1,3 +1,5 @@
+# This class will generate the user's current reading list. It will also add books to the local reading list database.
+
 from classes.Book import Book
 from api import google_books_api
 import sqlite3
