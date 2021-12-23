@@ -43,8 +43,6 @@ class GoogleList:
 
             elif int(user_selection) > 0 and int(user_selection) < 6:
                 user_book_selection = self.search_list[int(user_selection)-1]
-                
-                print(TerminalMessage.user_has_selected_msg(user_book_selection))
             
                 # reset search list
                 self.reset_search_list()

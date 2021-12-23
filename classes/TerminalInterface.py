@@ -21,12 +21,19 @@ class TerminalInterface:
 
             if mode == 1:
                 try:
+                    # get user input
                     TerminalMessage.start_search_books_msg()
                     user_search = self.get_search_input(TerminalMessage.search_book_prompt())
+
+                    # execute API search
                     self.google_search.search_for_books(user_search)
                     self.google_search.display_search_list()
+
+                    # get the user's selection
                     user_selection = self.get_integer_input(TerminalMessage.user_selection_prompt(), TerminalMessage.not_a_number_msg(), 6)
                     new_book = self.google_search.get_selected_book(user_selection)
+                    
+                    # Add book to the database
                     TerminalMessage.user_has_selected_msg(new_book)
                     TerminalMessage.book_added_msg()
                     self.reading_list.add_book(new_book)

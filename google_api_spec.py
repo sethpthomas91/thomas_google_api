@@ -1,5 +1,6 @@
 # unit testing
 import unittest
+from unittest.mock import patch
 
 # application imports
 import api
@@ -12,9 +13,7 @@ from classes.GoogleList import GoogleList
 
 from classes.ReadingList import ReadingList
 from classes.TerminalInterface import TerminalInterface
-
-
-
+from classes.TerminalMessage import TerminalMessage
 
 # global variables
 TEST_URL = 'https://www.googleapis.com/books/v1/volumes?q=flowers%20for%20algernon'
@@ -42,7 +41,7 @@ class TestCasesAPICalls(unittest.TestCase):
         self.assertEqual(input, output)
     
     def test_for_wrong_url_constructor(self):
-        """ This will test that the user input is filtered before entering the API call """
+        """ This will test that the user input is filtered before entering the API call, false positive test. """
         input = api.url_constructor("Dune Frank Herbert")
         output = 'https://www.googleapis.com/books/v1/volumes?q=Dune Frank Herbert'
         self.assertNotEqual(input, output)
@@ -95,26 +94,6 @@ class TestCasesAPICalls(unittest.TestCase):
         output = book_3
         self.assertNotEqual(input, output)
     
-    # def test_add_book_database(self):
-    #     """ This test will see if the adding book function adds a book object to the database """
-    #     conn = sqlite3.connect(':memory:')
-    #     curs = conn.cursor()
-    #     curs.execute("""CREATE TABLE books (
-    #             book_id INTEGER PRIMARY KEY,
-    #             author text,
-    #             title text,
-    #             publisher text
-    #             ) """)
-    #     conn.commit()       
-    #     book_1 = classes.Book('1','Test Author 1','Test Title 1','Test Publisher 1')
-    #     print(book_1.author)
-    #     database = ':memory:'
-    #     reading_list = ReadingList()
-    #     reading_list.add_book(book_1, database)
-    #     input = curs.fetchall()
-    #     output = 0
-    #     self.assertEqual(input, output)
-
     def test_book_creation(self):
         """ Tests for creating an instance of a book """
         book_1 = classes.Book('1','Test Author 1','Test Title 1','Test Publisher 1')
@@ -128,6 +107,40 @@ class TestCasesAPICalls(unittest.TestCase):
         input = reading_list
         output = classes.ReadingList
         self.assertIsInstance(input, output)
+
+    def test_google_list_creation(self):
+        """ Test for creating an instance of a google list """
+        google_list = GoogleList()
+        input = google_list
+        output = classes.GoogleList
+        self.assertIsInstance(input, output)
+
+    def test_google_list_selected_book(self):
+        """ Test for proper return of a user selected book """
+        google_list = GoogleList()
+        book_1 = classes.Book('1','Test Author 1','Test Title 1','Test Publisher 1')
+        book_2 = classes.Book('2','Test Author 2','Test Title 2','Test Publisher 2')
+        book_3 = classes.Book('3','Test Author 3','Test Title 3','Test Publisher 3')
+        google_list.search_list = [book_1, book_2, book_3]
+        input = google_list.get_selected_book(1)
+        output = book_1
+        self.assertEqual(input, output)
+
+    def test_google_list_selected_book_false_pos(self):
+        """ Test for proper return of a user selected book, testing for false positive """
+        google_list = GoogleList()
+        book_1 = classes.Book('1','Test Author 1','Test Title 1','Test Publisher 1')
+        book_2 = classes.Book('2','Test Author 2','Test Title 2','Test Publisher 2')
+        book_3 = classes.Book('3','Test Author 3','Test Title 3','Test Publisher 3')
+        google_list.search_list = [book_1, book_2, book_3]
+        input = google_list.get_selected_book(2)
+        output = book_3
+        self.assertNotEqual(input, output)
+    
+    @patch('classes.TerminalInterface.get_search_input', return_value='this is a search')
+    def test_input_returns_string(self, input):
+        self.assertEqual(classes.TerminalInterface.get_search_input(), 'this is a search')
+
 
 if __name__ == "__main__":
     unittest.main()
