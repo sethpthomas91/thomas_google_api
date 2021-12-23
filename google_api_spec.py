@@ -8,6 +8,7 @@ import classes
 # misc imports
 import sqlite3
 import json
+from classes.GoogleList import GoogleList
 
 from classes.ReadingList import ReadingList
 from classes.TerminalInterface import TerminalInterface
@@ -21,7 +22,6 @@ TEST_URL = 'https://www.googleapis.com/books/v1/volumes?q=flowers%20for%20algern
 # API testing
 class TestCasesAPICalls(unittest.TestCase):
     """ This will test functionality of the Google API Call """
-
     def test_for_API_call(self):
         """ This will test that the API call is returning a 200 code """
         input = api.api_request(TEST_URL).status_code
@@ -95,28 +95,39 @@ class TestCasesAPICalls(unittest.TestCase):
         output = book_3
         self.assertNotEqual(input, output)
     
-    def test_add_book_database(self):
-        """ This test will see if the adding book function adds a book object to the database """
-        conn = sqlite3.connect(':memory:')
-        curs = conn.cursor()
-        curs.execute("""CREATE TABLE books (
-                book_id INTEGER PRIMARY KEY,
-                author text,
-                title text,
-                publisher text
-                ) """)
-        conn.commit()       
+    # def test_add_book_database(self):
+    #     """ This test will see if the adding book function adds a book object to the database """
+    #     conn = sqlite3.connect(':memory:')
+    #     curs = conn.cursor()
+    #     curs.execute("""CREATE TABLE books (
+    #             book_id INTEGER PRIMARY KEY,
+    #             author text,
+    #             title text,
+    #             publisher text
+    #             ) """)
+    #     conn.commit()       
+    #     book_1 = classes.Book('1','Test Author 1','Test Title 1','Test Publisher 1')
+    #     print(book_1.author)
+    #     database = ':memory:'
+    #     reading_list = ReadingList()
+    #     reading_list.add_book(book_1, database)
+    #     input = curs.fetchall()
+    #     output = 0
+    #     self.assertEqual(input, output)
+
+    def test_book_creation(self):
+        """ Tests for creating an instance of a book """
         book_1 = classes.Book('1','Test Author 1','Test Title 1','Test Publisher 1')
-        print(book_1.author)
-        database = ':memory:'
-        reading_list = ReadingList()
-        reading_list.add_book(book_1, database)
-        input = curs.fetchall()
-        output = 0
-        self.assertEqual(input, output)
+        input = book_1
+        output = classes.Book
+        self.assertIsInstance(input, output)
 
-
-
+    def test_reading_list_creation(self):
+        """ Tests for creating an instance of a reading list """
+        reading_list = classes.ReadingList()
+        input = reading_list
+        output = classes.ReadingList
+        self.assertIsInstance(input, output)
 
 if __name__ == "__main__":
     unittest.main()

@@ -15,16 +15,22 @@ class TerminalInterface:
 
         TerminalMessage.welcome_msg()
 
+        # runs until a valid user input
         while True:
-            mode = self.get_integer_input(TerminalMessage.initial_menu(), TerminalMessage.not_a_number_msg())
+            mode = self.get_integer_input(TerminalMessage.initial_menu(), TerminalMessage.not_a_number_msg(), 3)
 
             if mode == 1:
                 try:
-                    self.google_search.search_for_books()
+                    TerminalMessage.start_search_books_msg()
+                    user_search = self.get_search_input(TerminalMessage.search_book_prompt())
+                    self.google_search.search_for_books(user_search)
                     self.google_search.display_search_list()
-                    self.google_search.get_selected_book()
-                    self.reading_list.add_book(self.google_search.selected_book)
-                except AttributeError:
+                    user_selection = self.get_integer_input(TerminalMessage.user_selection_prompt(), TerminalMessage.not_a_number_msg(), 6)
+                    new_book = self.google_search.get_selected_book(user_selection)
+                    TerminalMessage.user_has_selected_msg(new_book)
+                    TerminalMessage.book_added_msg()
+                    self.reading_list.add_book(new_book)
+                except:
                     print(TerminalMessage.abort_msg())
                     
             elif mode == 2:
@@ -33,14 +39,22 @@ class TerminalInterface:
                 TerminalMessage.exit_msg()
                 break
 
-    def get_integer_input(self, prompt, error_msg):
+    # handles user input for all menu choices. Cleans the input and provides error messages to the user.
+    def get_integer_input(self, prompt, error_msg, choice_limit):
         while True:
             try:
                 user_input = int(input(prompt))
-                return user_input
+                if user_input > 0 and user_input <= choice_limit:
+                    return user_input
+                else:
+                    print(error_msg)
             except ValueError:
                 print(error_msg)
 
+    # handles getting search input for books
+    def get_search_input(self, prompt):   
+        user_input = input(prompt)
+        return user_input
                 
 
             

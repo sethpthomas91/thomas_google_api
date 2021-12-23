@@ -1,4 +1,6 @@
 import requests
+
+from classes.TerminalMessage import TerminalMessage
 BASE_URL = 'https://www.googleapis.com/books/v1/volumes?q='
 BOOK_FILTER = '&printType=books'
 RESULT_LIMIT = '&startIndex=0&maxResults=5'
@@ -19,9 +21,8 @@ def api_json_return(response):
     search_dict = response.json()
 
     if search_dict['totalItems'] == 0:
-        print(""" 
-No books found with your search query, but here are some other suggestions in science fiction! """)
-        return api_json_return(api_request(url_constructor('Dune')))
+        TerminalMessage.no_books_found_msg()
+        return None
 
     filtered_book_list = []
     for book in search_dict['items']:

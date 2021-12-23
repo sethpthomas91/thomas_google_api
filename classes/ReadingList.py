@@ -29,9 +29,7 @@ class ReadingList:
         conn.commit()
         conn.close()
 
-        TerminalMessage.user_has_selected_msg(book)
-        TerminalMessage.book_added_msg()
-
+        # create a new reading list with the current books in the database
         self.books = Book.create_reading_list()
 
     

@@ -9,17 +9,12 @@ class GoogleList:
 
     def __init__(self):
         self.search_list = []
-        self.selected_book = None
     
     def reset_search_list(self):
         self.search_list = []
 
     # handles logic for menu choice 1
-    def search_for_books(self):
-
-        TerminalMessage.start_search_books_msg()
-
-        user_input = input(TerminalMessage.search_book_prompt())
+    def search_for_books(self, user_input):
         
         # API logic chain
         new_url = google_books_api.url_constructor(user_input)
@@ -39,29 +34,22 @@ class GoogleList:
 
         for book in self.search_list:
             print(book)
-
-    
-    def get_selected_book(self):
+ 
+    def get_selected_book(self, user_selection):
         
         while True:
-            user_selection = input(TerminalMessage.user_selection_prompt())
-            # if user input not verified it can throw a base 10 error when converting string to int
-            if len(user_selection) == 1:
+            if int(user_selection) == 6:
+                break
 
-                if int(user_selection) == 6:
-                    break
-
-                elif int(user_selection) > 0 and int(user_selection) < 6:
-                    user_book_selection = self.search_list[int(user_selection)-1]
-                    
-                    print(TerminalMessage.user_has_selected_msg(user_book_selection))
+            elif int(user_selection) > 0 and int(user_selection) < 6:
+                user_book_selection = self.search_list[int(user_selection)-1]
                 
-                self.selected_book = user_book_selection
-
+                print(TerminalMessage.user_has_selected_msg(user_book_selection))
+            
                 # reset search list
                 self.reset_search_list()
 
-                break
+                return user_book_selection
             # displays to user again if not a good input
             else:
                 print(self.search_list)

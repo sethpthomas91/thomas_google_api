@@ -5,10 +5,13 @@ class TerminalMessage:
     def welcome_msg():
         return print(""" 
 Welcome user!
-This is an application where you can search for books through your terminal.
-You will mainly be using numbers to execute commands. Please enter only valid numbers
-for selections. Search queries for finding books can be upper or lower case and can include 
-special characters or numbers.
+
+This is an application where you can search for books through your terminal. 
+It relies on the google books database, so we hope you can find something you want to read.
+
+You will mainly be using numbers to navigate the menu. 
+
+Please feel free to add any books you come across to your reading list!
 """)
 
     def initial_menu():
@@ -21,7 +24,7 @@ Please select a number that corresponds to what you want to do:
 
     def exit_msg():
         return print(""" 
-Have a nice day!
+Have a nice day and happy reading!
 """)
 
     def start_display_msg():
@@ -82,3 +85,9 @@ Please enter a valid number.
         return""" 
 Returning to main menu.
 """
+
+    def no_books_found_msg():
+        return print(""" 
+Sorry, but there were no books found.
+Please try another search.
+""")
