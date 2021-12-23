@@ -4,9 +4,15 @@ from classes.TerminalInterface import TerminalInterface
 
 TerminalInterface().run()
 
+# prompt = "Enter a number"
+# error_msg = "That was not a number!"
 
+# def get_integer_input(prompt, error_msg):
+#     while True:
+#         try:
+#             user_input = int(input(prompt))
+#             return user_input
+#         except ValueError:
+#             print(error_msg)
 
-
-
-
-# This will create the local database, must be run as the first step, but never again
+# get_integer_input(prompt, error_msg)

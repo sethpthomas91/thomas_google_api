@@ -4,11 +4,13 @@ import unittest
 # application imports
 import api
 import classes
-# from classes.Book import Book
 
 # misc imports
 import sqlite3
 import json
+
+from classes.ReadingList import ReadingList
+from classes.TerminalInterface import TerminalInterface
 
 
 
@@ -65,11 +67,56 @@ class TestCasesAPICalls(unittest.TestCase):
         self.assertEqual(input, output)
     
     def test_book_class_wrong_output(self):
-        """ Will test a book class being created """
+        """ Will test a book class being created, tests for false positive """
         book_1 = classes.Book('1','Douglas Adams','Hitchhikers Guide to the Galaxy','Megadodo')
         input = book_1.title
         output = 'Megadodo'
         self.assertNotEqual(input, output)
+
+    def test_reading_list_class(self):
+        """ Will test a reading list being created """
+        reading_list = ReadingList()
+        book_1 = classes.Book('1','Test Author 1','Test Title 1','Test Publisher 1')
+        book_2 = classes.Book('2','Test Author 2','Test Title 2','Test Publisher 2')
+        book_3 = classes.Book('3','Test Author 3','Test Title 3','Test Publisher 3')
+        reading_list.books = [book_1, book_2, book_3]
+        input = reading_list.books[1]
+        output = book_2
+        self.assertEqual(input, output)
+
+    def test_reading_list_class_false_pos(self):
+        """ Will test a reading list being created, tests for a false positive """
+        reading_list = ReadingList()
+        book_1 = classes.Book('1','Test Author 1','Test Title 1','Test Publisher 1')
+        book_2 = classes.Book('2','Test Author 2','Test Title 2','Test Publisher 2')
+        book_3 = classes.Book('3','Test Author 3','Test Title 3','Test Publisher 3')
+        reading_list.books = [book_1, book_2, book_3]
+        input = reading_list.books[0]
+        output = book_3
+        self.assertNotEqual(input, output)
+    
+    def test_add_book_database(self):
+        """ This test will see if the adding book function adds a book object to the database """
+        conn = sqlite3.connect(':memory:')
+        curs = conn.cursor()
+        curs.execute("""CREATE TABLE books (
+                book_id INTEGER PRIMARY KEY,
+                author text,
+                title text,
+                publisher text
+                ) """)
+        conn.commit()       
+        book_1 = classes.Book('1','Test Author 1','Test Title 1','Test Publisher 1')
+        print(book_1.author)
+        database = ':memory:'
+        reading_list = ReadingList()
+        reading_list.add_book(book_1, database)
+        input = curs.fetchall()
+        output = 0
+        self.assertEqual(input, output)
+
+
+
 
 if __name__ == "__main__":
     unittest.main()

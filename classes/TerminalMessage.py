@@ -70,5 +70,15 @@ You have selected to add:
 
     def book_added_msg():
         return print(""" 
-Book added to reading list!
+Book added to reading list.
 """)
+
+    def not_a_number_msg():
+        return """ 
+Please enter a valid number.
+"""
+
+    def abort_msg():
+        return""" 
+Returning to main menu.
+"""

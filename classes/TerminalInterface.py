@@ -16,19 +16,31 @@ class TerminalInterface:
         TerminalMessage.welcome_msg()
 
         while True:
-            mode = input(TerminalMessage.initial_menu())
-            if mode == '1':
-                self.google_search.search_for_books()
-                self.google_search.display_search_list()
-                self.google_search.get_selected_book()
-                self.reading_list.add_book(self.google_search.selected_book)
-            elif mode == '2':
+            mode = self.get_integer_input(TerminalMessage.initial_menu(), TerminalMessage.not_a_number_msg())
+
+            if mode == 1:
+                try:
+                    self.google_search.search_for_books()
+                    self.google_search.display_search_list()
+                    self.google_search.get_selected_book()
+                    self.reading_list.add_book(self.google_search.selected_book)
+                except AttributeError:
+                    print(TerminalMessage.abort_msg())
+                    
+            elif mode == 2:
                 self.reading_list.display_reading_list()
-            elif mode == '3':
+            elif mode == 3:
                 TerminalMessage.exit_msg()
                 break
 
+    def get_integer_input(self, prompt, error_msg):
+        while True:
+            try:
+                user_input = int(input(prompt))
+                return user_input
+            except ValueError:
+                print(error_msg)
 
-            
+                
 
             
