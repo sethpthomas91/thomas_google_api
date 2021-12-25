@@ -35,14 +35,15 @@ class GoogleList:
         for book in self.search_list:
             print(book)
  
+    # takes in a selection from the search list and returns that book object
     def get_selected_book(self, user_selection):
         
         while True:
-            if int(user_selection) == 6:
+            if user_selection == 6:
                 break
 
-            elif int(user_selection) > 0 and int(user_selection) < 6:
-                user_book_selection = self.search_list[int(user_selection)-1]
+            elif user_selection > 0 and user_selection < 6:
+                user_book_selection = self.search_list[user_selection-1]
             
                 # reset search list
                 self.reset_search_list()

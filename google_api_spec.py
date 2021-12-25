@@ -141,6 +141,13 @@ class TestCasesAPICalls(unittest.TestCase):
     def test_input_returns_string(self, input):
         self.assertEqual(classes.TerminalInterface.get_search_input(), 'this is a search')
 
+    @patch('classes.TerminalInterface.get_search_input', return_value='this is a search')
+    def test_input_returns_string_testing_false_positive(self, input):
+        self.assertNotEqual(classes.TerminalInterface.get_search_input(), 'this is not the same search that was inputed therefore it should be false!')
+
+    @patch('classes.TerminalInterface.get_integer_input', return_value=1)
+    def test_input_returns_an_integer(self, input):
+        self.assertEqual(classes.TerminalInterface.get_integer_input(), 1)
 
 if __name__ == "__main__":
     unittest.main()
