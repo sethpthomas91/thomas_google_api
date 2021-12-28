@@ -8,7 +8,7 @@ System Requirements:
 This application was built on mac, but should be easy to adapt to linux or any other system that can run the lastest version of python.
 
 System Setup:
-1. You will need the most up to date version of python to run this application. See the following link for installation instructions https://docs.python-guide.org/starting/installation/ .
+1. You will need the most up to date version of python to run this application. See the following link for installation instructions at the official documentation https://wiki.python.org/moin/BeginnersGuide/Download or a more reader friendly version at https://docs.python-guide.org/starting/installation/ .
 2. If you will not be using this longterm please utilize python's virtual environment to contain the project. You may do this after you have installed python.
   a. Run "python -m venv .venv" (this creates a virtual envirnonment called ".venv")
   b. Run "source .venv/bin/activate" (this enters the virtual environment)
@@ -36,4 +36,3 @@ This will ensure that your system is set up to run the program and has all of th
   ----------------------------------------------------------------------
   Ran 17 tests in 0.626s
   OK
-  
