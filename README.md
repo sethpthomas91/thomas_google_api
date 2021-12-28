@@ -28,11 +28,11 @@ Running the tests:
 In order to run the tests you must follow the installation instructions above.
 This will ensure that your system is set up to run the program and has all of the dependencies installed.
 
-1. Change directory to be on the same level as the google_api_test.py file.
+1. Change directory to be on the same level as the google_api_test.py file. You will also need to be in the virtual environment already created above.
   a. Run "python google_api_test.py"
   b. The tests will run and give you feedback if any of the tests fail.
   c. There are currently 17 tests. If all of the tests succeed you should see the following:
   .................
   ----------------------------------------------------------------------
-  Ran 17 tests in 0.626s
+  Ran 17 tests in (some number here)s
   OK
