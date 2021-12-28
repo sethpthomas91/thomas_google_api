@@ -31,7 +31,7 @@ Book ID: {self.id}
     def create_reading_list(cls):
         reading_list = []
         # the database call is relative to where the runner.py is
-        conn = sqlite3.connect('./data/reading_list.db')
+        conn = sqlite3.connect('./google_api_app/data/reading_list.db')
         curs = conn.cursor()
         curs.execute("SELECT * FROM books")
         all_books_db = curs.fetchall()

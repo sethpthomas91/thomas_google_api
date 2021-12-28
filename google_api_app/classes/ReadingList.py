@@ -1,10 +1,9 @@
 # This class will generate the user's current reading list. It will also add books to the local reading list database.
 
-from classes.Book import Book
 import sqlite3
-from api import google_books_api
+from .Book import Book
 from .TerminalMessage import TerminalMessage
-DATA_BASE = './data/reading_list.db'
+DATA_BASE = './google_api_app/data/reading_list.db'
 
 class ReadingList:
 
@@ -31,5 +30,8 @@ class ReadingList:
 
         # create a new reading list with the current books in the database
         self.books = Book.create_reading_list()
+
+        TerminalMessage.book_added_msg()
+
 
     

@@ -42,3 +42,7 @@ Functionality
 
 Testing:
 1. Terminal handles invalid inputs
+
+Release 3 Backend Refinement
+1. Reorganized the file structure to limit clutter in the base directory.
+2. Removed unused imports

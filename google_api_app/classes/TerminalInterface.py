@@ -29,19 +29,20 @@ class TerminalInterface:
                     self.google_search.search_for_books(user_search)
                     self.google_search.display_search_list()
 
-                    # get the user's selection
+                    # get the user's selection and make a book object
                     user_selection = self.get_integer_input(TerminalMessage.user_selection_prompt(), TerminalMessage.not_a_number_msg(), 6)
                     new_book = self.google_search.get_selected_book(user_selection)
                     
                     # Add book to the database
                     TerminalMessage.user_has_selected_msg(new_book)
-                    TerminalMessage.book_added_msg()
                     self.reading_list.add_book(new_book)
+                    
                 except:
                     print(TerminalMessage.abort_msg())
                     
             elif mode == 2:
                 self.reading_list.display_reading_list()
+                
             elif mode == 3:
                 TerminalMessage.exit_msg()
                 break

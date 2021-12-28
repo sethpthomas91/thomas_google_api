@@ -1,8 +1,6 @@
 # This class will be in responsible for calling the API
 
-from api import google_books_api
-from classes import TerminalInterface
-from .TerminalMessage import TerminalMessage
+from ..api import google_books_api
 from .Book import Book
 
 class GoogleList:

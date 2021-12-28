@@ -66,7 +66,12 @@ select 6 to go back to the main menu.
 """
 
     def user_has_selected_msg(book_selection):
-        return print(f""" 
+        if book_selection == None:
+            return print(""" 
+You have selected to not add a book.
+ """)
+        else:
+            return print(f""" 
 You have selected to add:
 {book_selection}
 """)

@@ -1,6 +1,6 @@
 import requests
 
-from classes.TerminalMessage import TerminalMessage
+from ..classes.TerminalMessage import TerminalMessage
 BASE_URL = 'https://www.googleapis.com/books/v1/volumes?q='
 BOOK_FILTER = '&printType=books'
 RESULT_LIMIT = '&startIndex=0&maxResults=5'
@@ -13,8 +13,11 @@ def url_constructor(search_terms):
 
 # takes in a url and makes a GET request
 def api_request(url=BASE_URL):
-    response = requests.get(url)
-    return response
+    try:
+        response = requests.get(url)
+        return response
+    except:
+        return TimeoutError
 
 # should return a dictionary with only 5 objects if the API call went through
 def api_json_return(response):
